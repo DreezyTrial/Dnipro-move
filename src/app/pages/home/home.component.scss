@@ -1,15 +1,15 @@
 .hero {
   display: grid;
-  grid-template-columns: 1.4fr 0.8fr;
-  gap: 2rem;
-  padding: 5rem 6vw 4rem;
+  grid-template-columns: minmax(0, 1.4fr) minmax(16rem, 0.8fr);
+  gap: clamp(1.25rem, 3vw, 2rem);
+  padding: clamp(2rem, 6vw, 5rem) var(--gutter) clamp(2rem, 5vw, 4rem);
   background:
     radial-gradient(circle at 80% 10%, rgba(244, 185, 66, 0.18), transparent 40%),
     linear-gradient(180deg, #0b1220, #101827);
 }
 
 h1 {
-  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-size: clamp(1.7rem, 5.2vw, 3.2rem);
   line-height: 1.15;
   margin: 0.4rem 0 1rem;
 }
@@ -17,7 +17,7 @@ h1 {
 .lead {
   max-width: 40rem;
   color: var(--muted);
-  font-size: 1.1rem;
+  font-size: clamp(0.98rem, 2.2vw, 1.1rem);
 }
 
 .actions {
@@ -34,6 +34,11 @@ h1 {
   background: #f4b942;
   color: #121212;
   font-weight: 700;
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .btn.ghost {
@@ -50,6 +55,7 @@ h1 {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
   align-self: center;
+  min-width: 0;
 }
 
 .stats li {
@@ -63,7 +69,7 @@ h1 {
 
 .stats strong {
   display: block;
-  font-size: 1.6rem;
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
 }
 
 .stats span {
@@ -71,29 +77,35 @@ h1 {
 }
 
 .services {
-  padding: 4rem 6vw;
+  padding: clamp(2.2rem, 5vw, 4rem) var(--gutter);
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1rem;
   margin-top: 1.4rem;
 }
 
 .grid article {
   padding: 1.2rem;
-  border-radius: 1rem;
+  border-radius: var(--radius);
   background: #182236;
   border: 1px solid rgba(255, 255, 255, 0.05);
+  min-width: 0;
+}
+
+.grid h3 {
+  margin: 0 0 0.5rem;
 }
 
 .grid p {
+  margin: 0;
   color: var(--muted);
 }
 
 .draft {
-  padding: 2rem 6vw;
+  padding: clamp(1.2rem, 3vw, 2rem) var(--gutter);
   background: #0d1422;
 }
 
@@ -102,12 +114,12 @@ h1 {
 }
 
 .draft-slot {
-  min-height: 18rem;
+  min-height: clamp(12rem, 32vw, 18rem);
   display: grid;
   place-content: center;
   text-align: center;
   gap: 0.4rem;
-  padding: 2rem;
+  padding: clamp(1.1rem, 3vw, 2rem);
   border-radius: 1.1rem;
   border: 1px dashed rgba(244, 185, 66, 0.4);
   background: repeating-linear-gradient(
@@ -120,27 +132,35 @@ h1 {
 }
 
 .draft-slot p {
-  margin: 0;
+  margin: 0 auto;
+  max-width: 36rem;
   color: var(--muted);
 }
 
 .contact {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  padding: 4.5rem 6vw;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(1.25rem, 3vw, 2rem);
+  padding: clamp(2.2rem, 5vw, 4.5rem) var(--gutter);
   background: #0d1422;
+}
+
+.contact p {
+  color: var(--muted);
 }
 
 .contact form {
   display: grid;
   gap: 0.75rem;
+  min-width: 0;
 }
 
 .contact input,
 .contact textarea,
 .contact button {
+  width: 100%;
   font: inherit;
+  font-size: 1rem;
   padding: 0.8rem 0.9rem;
   border-radius: 0.7rem;
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -149,6 +169,7 @@ h1 {
 }
 
 .contact button {
+  min-height: 2.85rem;
   background: #f4b942;
   color: #121212;
   border: 0;
@@ -156,10 +177,64 @@ h1 {
   cursor: pointer;
 }
 
+@media (max-width: 1100px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 900px) {
   .hero,
-  .contact,
+  .contact {
+    grid-template-columns: 1fr;
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+
+  .stats li {
+    padding: 0.4rem 0.2rem;
+    border-bottom: 0;
+    text-align: center;
+  }
+}
+
+@media (max-width: 640px) {
   .grid {
     grid-template-columns: 1fr;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+  }
+
+  .stats li {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    text-align: left;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .stats li:last-child {
+    border-bottom: 0;
+  }
+
+  .stats strong {
+    flex: 0 0 auto;
   }
 }
