@@ -1,0 +1,64 @@
+<section class="hero" id="top">
+  <div>
+    <p class="eyebrow">Дніпро та область</p>
+    <h1>Вантажні перевезення по місту й Дніпропетровській області</h1>
+    <p class="lead">
+      Забір, доставка й розвантаження в межах Дніпра та сусідніх міст. Без міжобласних рейсів —
+      швидше подача й зрозуміла ціна по локальних маршрутах.
+    </p>
+    <div class="actions">
+      <a class="btn" href="#calculator">Рахувати вартість</a>
+      <a class="btn ghost" href="#contact">Замовити машину</a>
+    </div>
+  </div>
+  <ul class="stats">
+    <li><strong>2–4 год</strong><span>типова доставка по місту</span></li>
+    <li><strong>1 день</strong><span>рейс по області</span></li>
+    <li><strong>7:00–22:00</strong><span>прийом заявок щодня</span></li>
+  </ul>
+</section>
+
+<section id="services" class="services">
+  <p class="eyebrow">Що робимо</p>
+  <h2>Послуги</h2>
+  <div class="grid">
+    @for (item of services; track item.title) {
+      <article>
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.text }}</p>
+      </article>
+    }
+  </div>
+</section>
+
+<section id="coverage" class="draft" aria-label="Чернетка блоку">
+  <div class="draft-slot">
+    <p class="eyebrow">Чернетка</p>
+    <strong>Блок під вбудовування</strong>
+    <p>Тут був розділ «Де їздимо». Залишене місце під інший контент або віджет.</p>
+  </div>
+</section>
+
+<section id="process" class="draft alt" aria-label="Чернетка блоку">
+  <div class="draft-slot">
+    <p class="eyebrow">Чернетка</p>
+    <strong>Блок під вбудовування</strong>
+    <p>Тут був розділ «Три кроки до доставки». Залишене місце під інший контент або віджет.</p>
+  </div>
+</section>
+
+<app-widget-embed />
+
+<section id="contact" class="contact">
+  <div>
+    <p class="eyebrow">Заявка</p>
+    <h2>Потрібна машина по Дніпру чи області?</h2>
+    <p>Напишіть район міста або населений пункт — передзвонимо й підтвердимо слот.</p>
+  </div>
+  <form (submit)="$event.preventDefault()">
+    <input type="text" name="name" placeholder="Імʼя" required />
+    <input type="tel" name="phone" placeholder="Телефон" required />
+    <textarea name="comment" rows="4" placeholder="Звідки / куди (район або місто області)"></textarea>
+    <button type="submit">Надіслати заявку</button>
+  </form>
+</section>

@@ -1,0 +1,35 @@
+:root {
+  --bg: #0b1220;
+  --text: #f4f1ea;
+  --muted: #a8b0c0;
+  --header-h: 4.5rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, "Segoe UI", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+h2 {
+  margin: 0.3rem 0 0.6rem;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+}
+
+.eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+  color: #f4b942;
+  font-weight: 700;
+}

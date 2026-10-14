@@ -1,0 +1,27 @@
+<section id="calculator" class="wrap">
+  <h2 class="sr-only">Калькулятор вартості</h2>
+
+  <div #slot id="calculator-iframe" class="slot" [class.live]="!!iframeSrc">
+    @if (iframeSrc) {
+      <iframe
+        #frame
+        title="Калькулятор вартості перевезення"
+        [src]="iframeSrc"
+        scrolling="no"
+        loading="eager"
+        referrerpolicy="no-referrer-when-downgrade"
+        (load)="onIframeLoad()"
+      ></iframe>
+      <div
+        class="scroll-bridge"
+        [class.pass]="passClicks"
+        (pointerdown)="allowClicks()"
+      ></div>
+    } @else {
+      <div class="placeholder">
+        <strong>Калькулятор на весь екран без прокрутки</strong>
+        <p>Вкажіть URL у <code>environment.calculatorIframeUrl</code></p>
+      </div>
+    }
+  </div>
+</section>

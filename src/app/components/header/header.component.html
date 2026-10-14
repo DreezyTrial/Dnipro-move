@@ -1,0 +1,20 @@
+<header class="header">
+  <a class="brand" href="#top" (click)="close()">
+    <span class="mark">DM</span>
+    <span>
+      <strong>Dnipro Move</strong>
+      <small>місто та область</small>
+    </span>
+  </a>
+
+  <button class="burger" type="button" (click)="toggle()" [attr.aria-expanded]="menuOpen">
+    Меню
+  </button>
+
+  <nav class="nav" [class.open]="menuOpen">
+    <a href="#services" (click)="close()">Послуги</a>
+    <a href="#calculator" (click)="close()">Калькулятор</a>
+    <a href="#contact" (click)="close()">Контакти</a>
+    <a class="cta" href="tel:+380561234567">+38 (056) 123-45-67</a>
+  </nav>
+</header>
