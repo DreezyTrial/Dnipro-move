@@ -1,18 +1,24 @@
 <section id="calculator" class="wrap">
-  <h2 class="sr-only">Калькулятор вартості</h2>
+  <div class="head">
+    <h2>Прорахувати вартість перевезення</h2>
+    <p>Адреси й що веземо — сума зʼявиться нижче. Це ціна перевезення, без прихованих платежів.</p>
+  </div>
 
-  <div id="calculator-iframe" class="slot" [class.live]="!!iframeSrc">
+  <div #slot id="calculator-iframe" class="slot" [class.live]="!!iframeSrc">
     @if (iframeSrc) {
       <iframe
+        #frame
         title="Калькулятор вартості перевезення"
         [src]="iframeSrc"
+        scrolling="no"
         loading="eager"
         referrerpolicy="no-referrer-when-downgrade"
+        (load)="onIframeLoad()"
       ></iframe>
     } @else {
       <div class="placeholder">
-        <strong>Калькулятор вартості</strong>
-        <p>Вкажіть URL у <code>environment.calculatorIframeUrl</code></p>
+        <strong>Калькулятор ще не підключений</strong>
+        <p>Вкажіть адресу у <code>environment.calculatorIframeUrl</code></p>
       </div>
     }
   </div>

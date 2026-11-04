@@ -1,64 +1,80 @@
 <section class="hero" id="top">
-  <div>
-    <p class="eyebrow">Дніпро та область</p>
-    <h1>Вантажні перевезення по місту й Дніпропетровській області</h1>
-    <p class="lead">
-      Забір, доставка й розвантаження в межах Дніпра та сусідніх міст. Без міжобласних рейсів —
-      швидше подача й зрозуміла ціна по локальних маршрутах.
-    </p>
-    <div class="actions">
-      <a class="btn" href="#calculator">Рахувати вартість</a>
-      <a class="btn ghost" href="#contact">Замовити машину</a>
-    </div>
+  <h1>
+    <span>Авто та вантажники по місту протягом двох годин.</span>
+  </h1>
+  <p class="lead">
+    Квартири , дачі , привані будинки, офіси.
+    Ціну називаємо до виїзду і приїжджаємо на вказаний час.
+  </p>
+  <div class="actions">
+    <a class="btn" href="#calculator">Прорахувати вартість</a>
+    <a class="btn btn-line" href="#contact">Залишити заявку</a>
   </div>
-  <ul class="stats">
-    <li><strong>2–4 год</strong><span>типова доставка по місту</span></li>
-    <li><strong>1 день</strong><span>рейс по області</span></li>
-    <li><strong>7:00–22:00</strong><span>прийом заявок щодня</span></li>
+</section>
+
+<ul class="facts">
+  <li><b>7:00–22:00</b><span>диспетчер на лінії</span></li>
+</ul>
+
+<section class="trust" id="trust">
+  <h2>Чому обирають нас</h2>
+  <ul>
+    <li>
+      <b>Надійність</b>
+      <p>Називаємо час і приїжджаємо на нього. Виконуємо роботу якісно і вчасно.</p>
+    </li>
+    <li>
+      <b>Прозорість </b>
+      <p>Орієнтовна сума в калькуляторі ще до виїзду. Що нарахувало — те й платите, без "доплати у дворі".</p>
+    </li>
+    <li>
+      <b>Досвід </b>
+      <p>Займаємося перевезеннями вже 8 років. Ми маємо великий досвід в перевезенні різних вантажів.</p>
+    </li>
   </ul>
 </section>
 
 <section id="services" class="services">
-  <p class="eyebrow">Що робимо</p>
-  <h2>Послуги</h2>
-  <div class="grid">
+  <h2>Наші послуги</h2>
+  <ol class="list">
     @for (item of services; track item.title) {
-      <article>
-        <h3>{{ item.title }}</h3>
-        <p>{{ item.text }}</p>
-      </article>
+      <li>
+        <span class="num">{{ item.n }}</span>
+        <div>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.text }}</p>
+        </div>
+      </li>
     }
-  </div>
-</section>
-
-<section id="coverage" class="draft" aria-label="Чернетка блоку">
-  <div class="draft-slot">
-    <p class="eyebrow">Чернетка</p>
-    <strong>Блок під вбудовування</strong>
-    <p>Тут був розділ «Де їздимо». Залишене місце під інший контент або віджет.</p>
-  </div>
-</section>
-
-<section id="process" class="draft alt" aria-label="Чернетка блоку">
-  <div class="draft-slot">
-    <p class="eyebrow">Чернетка</p>
-    <strong>Блок під вбудовування</strong>
-    <p>Тут був розділ «Три кроки до доставки». Залишене місце під інший контент або віджет.</p>
-  </div>
+  </ol>
 </section>
 
 <app-widget-embed />
 
 <section id="contact" class="contact">
   <div>
-    <p class="eyebrow">Заявка</p>
-    <h2>Потрібна машина по Дніпру чи області?</h2>
-    <p>Напишіть район міста або населений пункт — передзвонимо й підтвердимо слот.</p>
+    <h2>Подзвоніть або залишіть заявку</h2>
+    <p>Район, поверх і що везете. Ми звʼяжемося з вами найближчим часом.</p>
+    <a class="tel" href="tel:+380683331414">+38 (068) 333-14-14</a>
   </div>
-  <form (submit)="$event.preventDefault()">
-    <input type="text" name="name" placeholder="Імʼя" required />
-    <input type="tel" name="phone" placeholder="Телефон" required />
-    <textarea name="comment" rows="4" placeholder="Звідки / куди (район або місто області)"></textarea>
-    <button type="submit">Надіслати заявку</button>
+  <form (submit)="sendLead($event)">
+    <label>
+      Імʼя
+      <input type="text" name="name" autocomplete="name" required />
+    </label>
+    <label>
+      Телефон
+      <input type="tel" name="phone" autocomplete="tel" required />
+    </label>
+    <label>
+      Звідки і куди
+      <textarea name="comment" rows="3"></textarea>
+    </label>
+    <button type="submit" [disabled]="sending || sent">
+      {{ sending ? 'Надсилаємо…' : (sent ? 'Заявку надіслано' : 'Передзвоніть мені') }}
+    </button>
+    @if (error) {
+      <p class="form-note" role="alert">{{ error }}</p>
+    }
   </form>
 </section>
