@@ -9,6 +9,9 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { environment } from '../../../environments/environment';
 
 const EMBED_RESIZE_MESSAGE = 'cargo-calculator:resize';
+const EMBED_CONVERSION_MESSAGE = 'cargo-calculator:conversion';
+
+declare function gtag_report_conversion(url?: string): boolean;
 
 @Component({
   selector: 'app-widget-embed',
@@ -55,7 +58,18 @@ export class WidgetEmbedComponent implements AfterViewInit, OnDestroy {
     }
 
     const data = event.data as { type?: string; height?: number } | null;
-    if (!data || data.type !== EMBED_RESIZE_MESSAGE) {
+    if (!data) {
+      return;
+    }
+
+    if (data.type === EMBED_CONVERSION_MESSAGE) {
+      if (typeof gtag_report_conversion === 'function') {
+        gtag_report_conversion();
+      }
+      return;
+    }
+
+    if (data.type !== EMBED_RESIZE_MESSAGE) {
       return;
     }
 
