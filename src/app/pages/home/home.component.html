@@ -55,7 +55,7 @@
   <div>
     <h2>Подзвоніть або залишіть заявку</h2>
     <p>Район, поверх і що везете. Ми звʼяжемося з вами найближчим часом.</p>
-    <a class="tel" href="tel:+380683331414">+38 (068) 333-14-14</a>
+    <a class="tel" onclick="return gtag_report_conversion('tel:+380683331414');" href="tel:+380683331414">+38 (068) 333-14-14</a>
   </div>
   <form (submit)="sendLead($event)">
     <label>
@@ -70,7 +70,7 @@
       Звідки і куди
       <textarea name="comment" rows="3"></textarea>
     </label>
-    <button type="submit" [disabled]="sending || sent">
+    <button type="submit" onclick="gtag_report_conversion()" [disabled]="sending || sent">
       {{ sending ? 'Надсилаємо…' : (sent ? 'Заявку надіслано' : 'Передзвоніть мені') }}
     </button>
     @if (error) {
