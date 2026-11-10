@@ -66,6 +66,7 @@ export class HomeComponent {
       }
       this.sent = true;
       form.reset();
+      gtag_report_conversion();
     } catch {
       this.error = 'Не вдалося надіслати заявку. Зателефонуйте, будь ласка.';
     } finally {

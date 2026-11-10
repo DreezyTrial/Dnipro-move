@@ -26,6 +26,21 @@
     gtag('js', new Date());
     gtag('config', 'AW-18472632326');
   </script>
+  <!-- Event snippet for Покупка conversion -->
+  <script>
+    function gtag_report_conversion(url) {
+      var callback = function () {
+        if (typeof(url) != 'undefined') {
+          window.location = url;
+        }
+      };
+      gtag('event', 'conversion', {
+        'send_to': 'AW-18472632326/OOx6CJPSxLQdEIaAuOhE',
+        'event_callback': callback
+      });
+      return false;
+    }
+  </script>
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
